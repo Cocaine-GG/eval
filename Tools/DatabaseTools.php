@@ -1,5 +1,6 @@
 <?php
 
+
 use PDO;
 
 class DatabaseTools
@@ -31,8 +32,8 @@ class DatabaseTools
         return $result->fetchAll();
     }
     public function insertQuery($sql, $param) {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($param);
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($param);
     }
     public function selectByNameInTable($tableName, $rowName){
         $result = $this->pdo->query("SELECT * FROM $tableName WHERE name = '$rowName'");

@@ -13,16 +13,6 @@ $dbTools = new DatabaseTools('localhost', 'coca1negg_wf3', 'coca1negg_wf3', '%i1
 $dbTools->initDatabase();
 
 $dump = new DevTools();
-//$dump->prettyVarDump($dbTools->executeQuery('SELECT * FROM Drivers'));
-
-
-
-
-
-
-
-//$car = $dbTools->executeQuery("select * from Drivers");
-//$dump->prettyVarDump($car);
 
 
 $uriRequest = $_SERVER['REQUEST_URI'];

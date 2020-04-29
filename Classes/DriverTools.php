@@ -24,4 +24,10 @@ class DriverTools
         $this->dbTools->executeQuery("DELETE FROM `Drivers` WHERE driver_id = {$id}");
         return $this->getAllDrivers();
     }
+    public function addNewDriver($driver){
+        $param = ["driver_name"=>$driver->getName(), "driver_surname"=>$driver->getSurname()];
+        $this->dbTools->insertQuery("INSERT INTO `Drivers` (driver_name, driver_surname)
+                                        VALUE (:driver_name, :driver_surname)", $param);
+        return $this->getAllDrivers();
+    }
 }
