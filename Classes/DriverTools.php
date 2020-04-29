@@ -9,7 +9,7 @@ class DriverTools
         $this->dbTools = $dbTools;
     }
     public function getAllDrivers(){
-        $results = $this->dbTools->executeQuery("SELECT driver_id, driver_name ,driver_surname FROM Drivers");
+        $results = $this->dbTools->executeQuery("SELECT * FROM `Drivers`");
         $drivers=[];
         foreach ($results as $result){
             $driver = new Driver();
@@ -30,4 +30,9 @@ class DriverTools
                                         VALUE (:driver_name, :driver_surname)", $param);
         return $this->getAllDrivers();
     }
+    public function updateDriver($id, $newName, $newSurname){
+       $this->dbTools->executeQuery("UPDATE `Drivers` SET `driver_name` = '$newName', `driver_surname` = '$newSurname' WHERE `Drivers`.`driver_id` = $id");
+       return $this->getAllDrivers();
+    }
+
 }

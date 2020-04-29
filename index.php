@@ -6,8 +6,13 @@ use App\Tools\DevTools;
 
 require_once ('Tools/DatabaseTools.php');
 require_once ('Tools/DevTools.php');
-require ('Classes/Driver.php');
-require ('Classes/DriverTools.php');
+require_once ('Classes/Driver.php');
+require_once ('Classes/DriverTools.php');
+require_once ('Classes/Car.php');
+require_once ('Classes/CarTools.php');
+require_once ('Classes/Association.php');
+require_once ('Classes/AssociationTools.php');
+
 
 $dbTools = new DatabaseTools('localhost', 'coca1negg_wf3', 'coca1negg_wf3', '%i1bm9pL');
 $dbTools->initDatabase();
