@@ -1,16 +1,17 @@
 <?php
 
-
+//Draw all drivers
 $drivers = new DriverTools($dbTools);
 $drivers = $drivers->getAllDrivers();
-//foreach ($drivers as $driver){
-//    if(isset($_POST['delete']) && $_POST['delete']===$driver->getId()){
-//        $drivers = $drivers->deleteDriver($driver->getId());
-//    }
-//}
 
-//$dump->prettyVarDump($_POST['delete']);
-var_dump($_POST['delete']);
+foreach ($drivers as $driver){
+    if(isset($_POST['delete']) && $_POST['delete']===$driver->getId()){
+        $drivers = new DriverTools($dbTools);
+        $drivers->deleteDriver($driver->getId());
+        $drivers = $drivers->getAllDrivers();
+    }
+}
+
 ?>
 <h2 class="text-center">All drivers</h2>
 <table class="table w-75 mx-auto">
