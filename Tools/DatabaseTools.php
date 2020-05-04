@@ -1,8 +1,6 @@
 <?php
 
 
-use PDO;
-
 class DatabaseTools
 {
     private $host;

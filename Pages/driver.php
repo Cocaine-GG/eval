@@ -21,7 +21,9 @@ foreach ($drivers as $driver){
  */
     if(isset($_POST['new_name_driver'])
        && isset($_POST['new_surname_driver'])
-       && isset($_POST['rename'])) {
+       && isset($_POST['rename'])
+       && $_POST['new_name_driver']!==''
+       && $_POST['new_surname_driver']!=='') {
         if($_POST['rename'] === $driver->getId()){
             $drivers = new DriverTools($dbTools);
             $drivers->updateDriver($driver->getId(),$_POST['new_name_driver'],$_POST['new_surname_driver']);
@@ -30,7 +32,7 @@ foreach ($drivers as $driver){
     }
 }
 /*
- * Add a value for the button equal to driver ID
+ * Add a new driver
  */
 if(isset($_POST['name_driver'])
     && isset($_POST['surname_driver'])
@@ -44,13 +46,13 @@ if(isset($_POST['name_driver'])
 }
 
 ?>
-<h2 class="text-center">All drivers</h2>
+<h2 class="text-center">All drivers(<?= count($drivers)?>)</h2>
 <table class="table table-striped w-75 mx-auto text-center">
     <thead class="thead-dark">
     <tr>
         <th scope="col">Driver ID</th>
-        <th scope="col">Firstname</th>
-        <th scope="col">Lastname</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
     </tr>
@@ -70,20 +72,20 @@ if(isset($_POST['name_driver'])
         </tr>
 <!--Drawing this row when clicked button Edit-->
         <?php if(isset($_POST['edit']) && $_POST['edit']===$driver->getId()){?>
-            <form method="post">
-                <tr class="p-0">
-                    <td class="p-0"></td>
-                    <td class="p-0"><div class=""><input required name="new_name_driver" type="text" class="form-control w-auto text-center mx-auto" placeholder="&uarr; Name"></div></td>
-                    <td class="p-0"><div class=""><input required name="new_surname_driver" type="text" class="form-control w-auto text-center mx-auto" placeholder="&uarr; Surname"></div></td>
-                    <td class="p-0"><div class=""><button type="submit" name="rename" value="<?=$driver->getId()?>" class="btn btn-success">Ok</button></div></td>
-                    <td class="p-0"></td>
-                </tr>
-            </form>
+            <tr class="p-0">
+                <form method="post">
+                        <td class="p-0"></td>
+                        <td class="p-0"><div class=""><input required name="new_name_driver" type="text" class="form-control w-auto text-center mx-auto" placeholder="&uarr; Name"></div></td>
+                        <td class="p-0"><div class=""><input required name="new_surname_driver" type="text" class="form-control w-auto text-center mx-auto" placeholder="&uarr; Surname"></div></td>
+                        <td class="p-0"><div class=""><button type="submit" name="rename" value="<?=$driver->getId()?>" class="btn btn-success">Ok</button></div></td>
+                        <td class="p-0"></td>
+                </form>
+            </tr>
         <?php } ?>
     <?php } ?>
     </tbody>
 </table>
-<form method="post" class="w-50 mx-auto d-flex">
+<form method="post" class="w-50 mx-auto d-sm-flex">
     <div class="form-group mr-2">
         <input required name="name_driver" type="text" class="form-control" placeholder="Name">
     </div>
@@ -91,6 +93,6 @@ if(isset($_POST['name_driver'])
         <input required name="surname_driver" type="text" class="form-control" placeholder="Surname">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-info d-block mr-0">Add new Driver</button>
+        <button type="submit" class="btn btn-info d-block mr-0">Add New Driver</button>
     </div>
 </form>

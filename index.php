@@ -22,6 +22,9 @@ $dump = new DevTools();
 
 $uriRequest = $_SERVER['REQUEST_URI'];
 $uri = parse_url($uriRequest,PHP_URL_PATH);
+if($uri==='/'){
+    $uri = '/driver';
+}
 require('Components/htmlHeader.php');
 switch ($uri){
     case '/':
